@@ -137,6 +137,7 @@ DateRange.defaultProps = {
   moveRangeOnFirstSelection: false,
   rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
   disabledDates: [],
+  athlinksCustom: false,
 };
 
 DateRange.propTypes = {
@@ -146,6 +147,7 @@ DateRange.propTypes = {
   className: PropTypes.string,
   ranges: PropTypes.arrayOf(rangeShape),
   moveRangeOnFirstSelection: PropTypes.bool,
+  athlinksCustom: PropTypes.bool,
 };
 
 export default DateRange;

@@ -40,6 +40,7 @@ export default {
   definedRangesWrapper: 'rdrDefinedRangesWrapper',
   staticRanges: 'rdrStaticRanges',
   staticRange: 'rdrStaticRange',
+  rangeLabel: 'rdrRangeLabel',
   inputRanges: 'rdrInputRanges',
   inputRange: 'rdrInputRange',
   inputRangeInput: 'rdrInputRangeInput',

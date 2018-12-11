@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { Calendar, DateRange, DateRangePicker, DefinedRange } from '../../../src';
+import {
+  Calendar,
+  DateRange,
+  DateRangePicker,
+  DefinedRange,
+  createStaticRanges,
+} from '../../../src';
 import * as rdrLocales from '../../../src/locale';
 import { format, addDays } from 'date-fns';
 import Section from './Section';
@@ -59,6 +65,10 @@ function formatDateDisplay(date, defaultText) {
   if (!date) return defaultText;
   return format(date, 'MM/DD/YYYY');
 }
+
+const today = new Date();
+const currentYear = today.getFullYear();
+const todayDay = today.getDate();
 
 export default class Main extends Component {
   constructor(props, context) {
@@ -127,6 +137,60 @@ export default class Main extends Component {
         },
       },
     };
+    this.staticRanges = [
+      {
+        label: 'Past',
+        ranges: [
+          {
+            label: 'Last Year',
+            range: () => ({
+              startDate: new Date(new Date().setFullYear(currentYear - 1)),
+              endDate: today,
+            }),
+          },
+          {
+            label: 'Last Month',
+            range: () => ({
+              startDate: new Date(new Date().setDate(todayDay - 30)),
+              endDate: today,
+            }),
+          },
+          {
+            label: 'Last Week',
+            range: () => ({
+              startDate: new Date(new Date().setDate(todayDay - 7)),
+              endDate: today,
+            }),
+          },
+        ],
+      },
+      {
+        label: 'Upcoming',
+        ranges: [
+          {
+            label: 'Next Week',
+            range: () => ({
+              startDate: today,
+              endDate: new Date(new Date().setDate(todayDay + 7)),
+            }),
+          },
+          {
+            label: 'Next Month',
+            range: () => ({
+              startDate: today,
+              endDate: new Date(new Date().setDate(todayDay + 30)),
+            }),
+          },
+          {
+            label: 'Next Year',
+            range: () => ({
+              startDate: today,
+              endDate: new Date(new Date().setFullYear(currentYear + 1)),
+            }),
+          },
+        ],
+      },
+    ];
   }
 
   handleChange(which, payload) {
@@ -169,7 +233,9 @@ export default class Main extends Component {
               showSelectionPreview={true}
               moveRangeOnFirstSelection={false}
               className={'PreviewArea'}
-              months={2}
+              months={1}
+              athlinksCustom={true}
+              staticRanges={createStaticRanges(this.staticRanges, true)}
               ranges={[this.state.dateRangePicker.selection]}
               direction="horizontal"
             />

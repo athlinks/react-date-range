@@ -37,8 +37,15 @@ const staticRangeHandler = {
   },
 };
 
-export function createStaticRanges(ranges) {
-  return ranges.map(range => ({ ...staticRangeHandler, ...range }));
+export function createStaticRanges(ranges, athlinksCustom) {
+  if (athlinksCustom) {
+    return ranges.map(range => ({
+      label: range.label,
+      ranges: range.ranges.map(range => ({ ...staticRangeHandler, ...range })),
+    }));
+  } else {
+    return ranges.map(range => ({ ...staticRangeHandler, ...range }));
+  }
 }
 
 export const defaultStaticRanges = createStaticRanges([

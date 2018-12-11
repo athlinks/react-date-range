@@ -238,7 +238,7 @@ class Calendar extends PureComponent {
     );
   }
   renderDateDisplay() {
-    const { focusedRange, color, ranges, rangeColors } = this.props;
+    const { focusedRange, color, ranges, rangeColors, athlinksCustom } = this.props;
     const defaultColor = rangeColors[focusedRange[0]] || color;
     const styles = this.styles;
     return (
@@ -250,28 +250,49 @@ class Calendar extends PureComponent {
             <div
               className={styles.dateDisplay}
               key={i}
-              style={{ color: range.color || defaultColor }}>
+              style={{
+                color: range.color || defaultColor,
+                backgroundColor: athlinksCustom ? 'transparent' : 'auto',
+              }}>
               <span
-                className={classnames(styles.dateDisplayItem, {
-                  [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 0,
-                })}
+                className={classnames(
+                  styles.dateDisplayItem,
+                  {
+                    [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 0,
+                  },
+                  'athlinksItem'
+                )}
                 onFocus={() => this.handleRangeFocusChange(i, 0)}>
                 <input
                   disabled={range.disabled}
                   readOnly
+                  style={{
+                    textAlign: athlinksCustom ? 'left' : 'auto',
+                    paddingLeft: athlinksCustom ? 10 : 'auto',
+                  }}
                   value={this.formatDateDisplay(range.startDate, 'Early')}
                 />
+                {athlinksCustom && <i onClick={() => console.log('1')} />}
               </span>
               <span
-                className={classnames(styles.dateDisplayItem, {
-                  [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 1,
-                })}
+                className={classnames(
+                  styles.dateDisplayItem,
+                  {
+                    [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 1,
+                  },
+                  'athlinksItem'
+                )}
                 onFocus={() => this.handleRangeFocusChange(i, 1)}>
                 <input
                   disabled={range.disabled}
                   readOnly
+                  style={{
+                    textAlign: athlinksCustom ? 'left' : 'auto',
+                    paddingLeft: athlinksCustom ? 10 : 'auto',
+                  }}
                   value={this.formatDateDisplay(range.endDate, 'Continuous')}
                 />
+                {athlinksCustom && <i onClick={() => console.log('1')} />}
               </span>
             </div>
           );
@@ -356,7 +377,9 @@ class Calendar extends PureComponent {
       minDate,
       rangeColors,
       color,
+      athlinksCustom,
     } = this.props;
+
     const { scrollArea, focusedDate } = this.state;
     const isVertical = direction === 'vertical';
     const navigatorRenderer = this.props.navigatorRenderer || this.renderMonthAndYear;
@@ -372,7 +395,7 @@ class Calendar extends PureComponent {
         onMouseLeave={() => {
           this.setState({ drag: { status: false, range: {} } });
         }}>
-        {showDateDisplay && this.renderDateDisplay()}
+        {showDateDisplay && !athlinksCustom && this.renderDateDisplay()}
         {navigatorRenderer(focusedDate, this.changeShownDate, this.props)}
         {scroll.enabled ? (
           <div>
@@ -422,7 +445,7 @@ class Calendar extends PureComponent {
                           ? { height: this.estimateMonthSize(index) }
                           : { height: scrollArea.monthHeight, width: this.estimateMonthSize(index) }
                       }
-                      showMonthName
+                      athlinksCustom
                       showWeekDays={!isVertical}
                     />
                   );
@@ -455,12 +478,13 @@ class Calendar extends PureComponent {
                   onMouseLeave={() => onPreviewChange && onPreviewChange()}
                   styles={this.styles}
                   showWeekDays={!isVertical || i === 0}
-                  showMonthName={!isVertical || i > 0}
+                  showMonthName={!athlinksCustom && (!isVertical || i > 0)}
                 />
               );
             })}
           </div>
         )}
+        {showDateDisplay && athlinksCustom && this.renderDateDisplay()}
       </div>
     );
   }
@@ -489,6 +513,7 @@ Calendar.defaultProps = {
   minDate: addYears(new Date(), -100),
   rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
   dragSelectionEnabled: true,
+  athlinksCustom: false,
 };
 
 Calendar.propTypes = {
@@ -534,6 +559,7 @@ Calendar.propTypes = {
   navigatorRenderer: PropTypes.func,
   rangeColors: PropTypes.arrayOf(PropTypes.string),
   dragSelectionEnabled: PropTypes.bool,
+  athlinksCustom: PropTypes.bool,
 };
 
 export default Calendar;

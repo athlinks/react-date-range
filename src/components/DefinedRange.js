@@ -31,63 +31,111 @@ class DefinedRanges extends Component {
     return { selectedRange, focusedRangeIndex };
   }
   render() {
-    const { onPreviewChange, ranges, rangeColors, className } = this.props;
+    const { onPreviewChange, ranges, rangeColors, className, athlinksCustom } = this.props;
     return (
       <div className={cx(styles.definedRangesWrapper, className)}>
         {this.props.headerContent}
         <div className={styles.staticRanges}>
-          {this.props.staticRanges.map((staticRange, i) => {
-            const { selectedRange, focusedRangeIndex } = this.getSelectedRange(ranges, staticRange);
-            return (
-              <button
-                type="button"
-                className={cx(styles.staticRange, {
-                  [styles.staticRangeSelected]: Boolean(selectedRange),
-                })}
-                style={{
-                  color: selectedRange
-                    ? selectedRange.color || rangeColors[focusedRangeIndex]
-                    : null,
-                }}
-                key={i}
-                onClick={() => this.handleRangeChange(staticRange.range(this.props))}
-                onFocus={() => onPreviewChange && onPreviewChange(staticRange.range(this.props))}
-                onMouseOver={() =>
-                  onPreviewChange && onPreviewChange(staticRange.range(this.props))
-                }
-                onMouseLeave={() => {
-                  this.props.onPreviewChange && this.props.onPreviewChange();
-                }}>
-                <span tabIndex={-1} className={styles.staticRangeLabel}>
-                  {staticRange.label}
-                </span>
-              </button>
-            );
-          })}
+          {!athlinksCustom &&
+            this.props.staticRanges.map((staticRange, i) => {
+              const { selectedRange, focusedRangeIndex } = this.getSelectedRange(
+                ranges,
+                staticRange
+              );
+              return (
+                <button
+                  type="button"
+                  className={cx(styles.staticRange, {
+                    [styles.staticRangeSelected]: Boolean(selectedRange),
+                  })}
+                  style={{
+                    color: selectedRange
+                      ? selectedRange.color || rangeColors[focusedRangeIndex]
+                      : null,
+                  }}
+                  key={i}
+                  onClick={() => this.handleRangeChange(staticRange.range(this.props))}
+                  onFocus={() => onPreviewChange && onPreviewChange(staticRange.range(this.props))}
+                  onMouseOver={() =>
+                    onPreviewChange && onPreviewChange(staticRange.range(this.props))
+                  }
+                  onMouseLeave={() => {
+                    this.props.onPreviewChange && this.props.onPreviewChange();
+                  }}>
+                  <span tabIndex={-1} className={styles.staticRangeLabel}>
+                    {staticRange.label}
+                  </span>
+                </button>
+              );
+            })}
+          {athlinksCustom &&
+            this.props.staticRanges.filter(_ => !!_.ranges).map((staticRange, i) => {
+              return (
+                <div key={i}>
+                  <div className={cx(styles.rangeLabel)}>{staticRange.label}</div>
+                  {staticRange.ranges.map((sectionRange, i) => {
+                    const { selectedRange, focusedRangeIndex } = this.getSelectedRange(
+                      ranges,
+                      sectionRange
+                    );
+                    return (
+                      <button
+                        type="button"
+                        className={cx(styles.staticRange, {
+                          [styles.staticRangeSelected]: Boolean(selectedRange),
+                        })}
+                        style={{
+                          color: selectedRange
+                            ? selectedRange.color || rangeColors[focusedRangeIndex]
+                            : null,
+                          width: '100%',
+                          border: 'none',
+                        }}
+                        key={i}
+                        onClick={() => this.handleRangeChange(sectionRange.range(this.props))}
+                        onFocus={() =>
+                          onPreviewChange && onPreviewChange(sectionRange.range(this.props))
+                        }
+                        onMouseOver={() =>
+                          onPreviewChange && onPreviewChange(sectionRange.range(this.props))
+                        }
+                        onMouseLeave={() => {
+                          this.props.onPreviewChange && this.props.onPreviewChange();
+                        }}>
+                        <span tabIndex={-1} className={styles.staticRangeLabel}>
+                          {sectionRange.label}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            })}
         </div>
         <div className={styles.inputRanges}>
-          {this.props.inputRanges.map((rangeOption, i) => (
-            <div className={styles.inputRange} key={i}>
-              <input
-                className={styles.inputRangeInput}
-                onFocus={() => this.setState({ focusedInput: i, rangeOffset: 0 })}
-                onBlur={() => this.setState({ rangeOffset: 0 })}
-                onChange={e => {
-                  let value = parseInt(e.target.value, 10);
-                  value = isNaN(value) ? 0 : Math.max(Math.min(99999, value), 0);
-                  this.handleRangeChange(rangeOption.range(value, this.props));
-                }}
-                min={0}
-                max={99999}
-                value={
-                  rangeOption.getCurrentValue
-                    ? rangeOption.getCurrentValue(ranges[this.props.focusedRange[0]] || {})
-                    : '-'
-                }
-              />
-              <span className={styles.inputRangeLabel}>{rangeOption.label}</span>
-            </div>
-          ))}
+          {!athlinksCustom &&
+            this.props.inputRanges.map((rangeOption, i) => (
+              <div className={styles.inputRange} key={i}>
+                <input
+                  className={styles.inputRangeInput}
+                  onFocus={() => this.setState({ focusedInput: i, rangeOffset: 0 })}
+                  onBlur={() => this.setState({ rangeOffset: 0 })}
+                  onChange={e => {
+                    let value = parseInt(e.target.value, 10);
+                    value = isNaN(value) ? 0 : Math.max(Math.min(99999, value), 0);
+                    this.handleRangeChange(rangeOption.range(value, this.props));
+                  }}
+                  min={0}
+                  max={99999}
+                  value={
+                    rangeOption.getCurrentValue
+                      ? rangeOption.getCurrentValue(ranges[this.props.focusedRange[0]] || {})
+                      : '-'
+                  }
+                />
+                <span className={styles.inputRangeLabel}>{rangeOption.label}</span>
+              </div>
+            ))}
         </div>
         {this.props.footerContent}
       </div>
@@ -106,6 +154,7 @@ DefinedRanges.propTypes = {
   headerContent: PropTypes.any,
   rangeColors: PropTypes.arrayOf(PropTypes.string),
   className: PropTypes.string,
+  athlinksCustom: PropTypes.bool,
 };
 
 DefinedRanges.defaultProps = {
@@ -114,6 +163,7 @@ DefinedRanges.defaultProps = {
   ranges: [],
   rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
   focusedRange: [0, 0],
+  athlinksCustom: false,
 };
 
 export default DefinedRanges;
