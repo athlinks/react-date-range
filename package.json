@@ -11,6 +11,7 @@
     "build-library": "babel ./src --out-dir ./dist --ignore test.js & postcss 'src/styles.scss' -d dist --ext css & postcss 'src/theme/*.scss' -d 'dist/theme' --ext css",
     "lint": "eslint 'src/**/*.js'",
     "test": "jest",
+    "postinstall": "npm install && npm run build",
     "preversion": "yarn clear & yarn build"
   },
   "keywords": [
