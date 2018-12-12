@@ -459,7 +459,7 @@ var Calendar = function (_PureComponent) {
               athlinksCustom && range.startDate && _react2.default.createElement('i', {
                 onClick: function onClick() {
                   var newRange = {
-                    startDate: '',
+                    startDate: null,
                     endDate: range.endDate
                   };
                   updateRange(newRange);
@@ -486,7 +486,7 @@ var Calendar = function (_PureComponent) {
                 onClick: function onClick() {
                   var newRange = {
                     startDate: range.startDate,
-                    endDate: ''
+                    endDate: null
                   };
                   updateRange(newRange);
                 }
@@ -585,6 +585,7 @@ var Calendar = function (_PureComponent) {
   }, {
     key: 'formatDateDisplay',
     value: function formatDateDisplay(date, defaultText) {
+      console.log(date, 'FOR DEBUGING');
       if (!date) return defaultText;
       return (0, _format2.default)(date, this.props.dateDisplayFormat, this.dateOptions);
     }

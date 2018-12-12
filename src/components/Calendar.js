@@ -277,7 +277,7 @@ class Calendar extends PureComponent {
                     <i
                       onClick={() => {
                         const newRange = {
-                          startDate: '',
+                          startDate: null,
                           endDate: range.endDate,
                         };
                         updateRange(newRange);
@@ -309,7 +309,7 @@ class Calendar extends PureComponent {
                       onClick={() => {
                         const newRange = {
                           startDate: range.startDate,
-                          endDate: '',
+                          endDate: null,
                         };
                         updateRange(newRange);
                       }}
@@ -385,6 +385,7 @@ class Calendar extends PureComponent {
     return isLongMonth ? scrollArea.longMonthHeight : scrollArea.monthHeight;
   }
   formatDateDisplay(date, defaultText) {
+    console.log(date, 'FOR DEBUGING');
     if (!date) return defaultText;
     return format(date, this.props.dateDisplayFormat, this.dateOptions);
   }
