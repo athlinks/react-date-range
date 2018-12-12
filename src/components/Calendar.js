@@ -238,7 +238,7 @@ class Calendar extends PureComponent {
     );
   }
   renderDateDisplay() {
-    const { focusedRange, color, ranges, rangeColors, athlinksCustom } = this.props;
+    const { focusedRange, color, ranges, rangeColors, athlinksCustom, updateRange } = this.props;
     const defaultColor = rangeColors[focusedRange[0]] || color;
     const styles = this.styles;
     return (
@@ -272,7 +272,18 @@ class Calendar extends PureComponent {
                   }}
                   value={this.formatDateDisplay(range.startDate, 'Early')}
                 />
-                {athlinksCustom && <i onClick={() => console.log('1')} />}
+                {athlinksCustom &&
+                  range.startDate && (
+                    <i
+                      onClick={() => {
+                        const newRange = {
+                          startDate: null,
+                          endDate: range.endDate,
+                        };
+                        updateRange(newRange);
+                      }}
+                    />
+                  )}
               </span>
               <span
                 className={classnames(
@@ -292,7 +303,18 @@ class Calendar extends PureComponent {
                   }}
                   value={this.formatDateDisplay(range.endDate, 'Continuous')}
                 />
-                {athlinksCustom && <i onClick={() => console.log('1')} />}
+                {athlinksCustom &&
+                  range.endDate && (
+                    <i
+                      onClick={() => {
+                        const newRange = {
+                          startDate: range.startDate,
+                          endDate: null,
+                        };
+                        updateRange(newRange);
+                      }}
+                    />
+                  )}
               </span>
             </div>
           );
