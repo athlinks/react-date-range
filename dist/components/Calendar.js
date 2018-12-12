@@ -459,7 +459,7 @@ var Calendar = function (_PureComponent) {
               athlinksCustom && range.startDate && _react2.default.createElement('i', {
                 onClick: function onClick() {
                   var newRange = {
-                    startDate: null,
+                    startDate: '',
                     endDate: range.endDate
                   };
                   updateRange(newRange);
@@ -486,7 +486,7 @@ var Calendar = function (_PureComponent) {
                 onClick: function onClick() {
                   var newRange = {
                     startDate: range.startDate,
-                    endDate: null
+                    endDate: ''
                   };
                   updateRange(newRange);
                 }

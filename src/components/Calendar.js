@@ -277,7 +277,7 @@ class Calendar extends PureComponent {
                     <i
                       onClick={() => {
                         const newRange = {
-                          startDate: null,
+                          startDate: '',
                           endDate: range.endDate,
                         };
                         updateRange(newRange);
@@ -309,7 +309,7 @@ class Calendar extends PureComponent {
                       onClick={() => {
                         const newRange = {
                           startDate: range.startDate,
-                          endDate: null,
+                          endDate: '',
                         };
                         updateRange(newRange);
                       }}
