@@ -270,7 +270,7 @@ class Calendar extends PureComponent {
                     textAlign: athlinksCustom ? 'left' : 'auto',
                     paddingLeft: athlinksCustom ? 10 : 'auto',
                   }}
-                  value={this.formatDateDisplay(range.startDate, 'Early')}
+                  value={this.formatDateDisplay(range.startDate, 'Select start date')}
                 />
                 {athlinksCustom &&
                   range.startDate && (
@@ -301,7 +301,7 @@ class Calendar extends PureComponent {
                     textAlign: athlinksCustom ? 'left' : 'auto',
                     paddingLeft: athlinksCustom ? 10 : 'auto',
                   }}
-                  value={this.formatDateDisplay(range.endDate, 'Continuous')}
+                  value={this.formatDateDisplay(range.endDate, 'Select end date')}
                 />
                 {athlinksCustom &&
                   range.endDate && (
