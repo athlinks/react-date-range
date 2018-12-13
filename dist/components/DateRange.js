@@ -191,11 +191,13 @@ var DateRange = function (_Component) {
       }
       var _props3 = this.props,
           rangeColors = _props3.rangeColors,
-          ranges = _props3.ranges;
+          ranges = _props3.ranges,
+          athlinksCustom = _props3.athlinksCustom;
 
       var focusedRange = this.props.focusedRange || this.state.focusedRange;
       var color = ranges[focusedRange[0]].color || rangeColors[focusedRange[0]] || color;
-      this.setState({ preview: _extends({}, val.range, { color: color }) });
+      var previewValue = athlinksCustom ? val : val.range;
+      this.setState({ preview: _extends({}, previewValue, { color: color }) });
     }
   }, {
     key: 'render',

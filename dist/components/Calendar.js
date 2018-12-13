@@ -454,7 +454,7 @@ var Calendar = function (_PureComponent) {
                   textAlign: athlinksCustom ? 'left' : 'auto',
                   paddingLeft: athlinksCustom ? 10 : 'auto'
                 },
-                value: _this4.formatDateDisplay(range.startDate, 'Early')
+                value: _this4.formatDateDisplay(range.startDate, 'Select start date')
               }),
               athlinksCustom && range.startDate && _react2.default.createElement('i', {
                 onClick: function onClick() {
@@ -480,7 +480,7 @@ var Calendar = function (_PureComponent) {
                   textAlign: athlinksCustom ? 'left' : 'auto',
                   paddingLeft: athlinksCustom ? 10 : 'auto'
                 },
-                value: _this4.formatDateDisplay(range.endDate, 'Continuous')
+                value: _this4.formatDateDisplay(range.endDate, 'Select end date')
               }),
               athlinksCustom && range.endDate && _react2.default.createElement('i', {
                 onClick: function onClick() {
