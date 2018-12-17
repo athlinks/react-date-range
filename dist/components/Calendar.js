@@ -617,6 +617,7 @@ var Calendar = function (_PureComponent) {
           color: range.color || rangeColors[i] || color
         });
       });
+      var rangesData = ranges.length === 1 && !ranges[0].startDate && !ranges[0].endDate ? [] : ranges;
       return _react2.default.createElement(
         'div',
         {
@@ -659,7 +660,7 @@ var Calendar = function (_PureComponent) {
                 return _react2.default.createElement(_Month2.default, _extends({}, _this5.props, {
                   onPreviewChange: _this5.props.onPreviewChange || _this5.updatePreview,
                   preview: _this5.props.preview || _this5.state.preview,
-                  ranges: ranges,
+                  ranges: rangesData,
                   key: key,
                   drag: _this5.state.drag,
                   dateOptions: _this5.dateOptions,
@@ -688,7 +689,7 @@ var Calendar = function (_PureComponent) {
             return _react2.default.createElement(_Month2.default, _extends({}, _this5.props, {
               onPreviewChange: _this5.props.onPreviewChange || _this5.updatePreview,
               preview: _this5.props.preview || _this5.state.preview,
-              ranges: ranges,
+              ranges: rangesData,
               key: i,
               drag: _this5.state.drag,
               dateOptions: _this5.dateOptions,

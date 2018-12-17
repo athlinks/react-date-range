@@ -411,6 +411,8 @@ class Calendar extends PureComponent {
       ...range,
       color: range.color || rangeColors[i] || color,
     }));
+    const rangesData =
+      ranges.length === 1 && !ranges[0].startDate && !ranges[0].endDate ? [] : ranges;
     return (
       <div
         className={classnames(this.styles.calendarWrapper, this.props.className)}
@@ -452,7 +454,7 @@ class Calendar extends PureComponent {
                       {...this.props}
                       onPreviewChange={this.props.onPreviewChange || this.updatePreview}
                       preview={this.props.preview || this.state.preview}
-                      ranges={ranges}
+                      ranges={rangesData}
                       key={key}
                       drag={this.state.drag}
                       dateOptions={this.dateOptions}
@@ -489,7 +491,7 @@ class Calendar extends PureComponent {
                   {...this.props}
                   onPreviewChange={this.props.onPreviewChange || this.updatePreview}
                   preview={this.props.preview || this.state.preview}
-                  ranges={ranges}
+                  ranges={rangesData}
                   key={i}
                   drag={this.state.drag}
                   dateOptions={this.dateOptions}
