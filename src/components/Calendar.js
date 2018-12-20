@@ -382,6 +382,7 @@ class Calendar extends PureComponent {
     return isLongMonth ? scrollArea.longMonthHeight : scrollArea.monthHeight;
   }
   formatDateDisplay(date, defaultText) {
+    console.log(date, 'FOR DEBUGING');
     if (!date) return defaultText;
     return format(date, this.props.dateDisplayFormat, this.dateOptions);
   }

@@ -584,6 +584,7 @@ var Calendar = function (_PureComponent) {
   }, {
     key: 'formatDateDisplay',
     value: function formatDateDisplay(date, defaultText) {
+      console.log(date, 'FOR DEBUGING');
       if (!date) return defaultText;
       return (0, _format2.default)(date, this.props.dateDisplayFormat, this.dateOptions);
     }
