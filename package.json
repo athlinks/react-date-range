@@ -36,7 +36,8 @@
     "classnames": "^2.2.1",
     "date-fns": "2.0.0-alpha.7",
     "prop-types": "^15.5.10",
-    "react-list": "^0.8.8"
+    "react-list": "^0.8.8",
+    "react-select": "^2.1.2"
   },
   "peerDependencies": {
     "react": "^0.14 || ^15.0.0-rc || >=15.0"

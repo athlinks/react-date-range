@@ -5,6 +5,7 @@ import Month from './Month.js';
 import { calcFocusDate, generateStyles, getMonthDisplayRange } from '../utils';
 import classnames from 'classnames';
 import ReactList from 'react-list';
+import Select from 'react-select';
 import {
   addMonths,
   format,
@@ -164,7 +165,27 @@ class Calendar extends PureComponent {
     const { showMonthArrow, locale, minDate, maxDate, showMonthAndYearPickers } = props;
     const upperYearLimit = (maxDate || Calendar.defaultProps.maxDate).getFullYear();
     const lowerYearLimit = (minDate || Calendar.defaultProps.minDate).getFullYear();
+    const monthOptions = locale.localize.months().map((month, i) => ({ value: i, label: month }));
+    const yearOptions = new Array(upperYearLimit - lowerYearLimit + 1)
+      .fill(upperYearLimit)
+      .map((val, i) => ({ value: val - i, label: val - i }));
     const styles = this.styles;
+    const dropdownStyles = {
+      control: provided => ({
+        ...provided,
+        border: 'none',
+        boxShadow: 'none',
+      }),
+      indicatorSeparator: provided => ({
+        ...provided,
+        backgroundColor: 'rgb(255,255,255)',
+      }),
+      valueContainer: provided => ({
+        ...provided,
+        justifyContent: 'flex-end',
+      }),
+    };
+
     return (
       <div onMouseUp={e => e.stopPropagation()} className={styles.monthAndYearWrapper}>
         {showMonthArrow ? (
@@ -178,32 +199,24 @@ class Calendar extends PureComponent {
         {showMonthAndYearPickers ? (
           <span className={styles.monthAndYearPickers}>
             <span className={styles.monthPicker}>
-              <select
-                value={focusedDate.getMonth()}
-                onChange={e => changeShownDate(e.target.value, 'setMonth')}>
-                {locale.localize.months().map((month, i) => (
-                  <option key={i} value={i}>
-                    {month}
-                  </option>
-                ))}
-              </select>
+              <Select
+                value={monthOptions.filter(_ => _.value === focusedDate.getMonth())}
+                isSearchable={false}
+                controlShouldRenderValue={true}
+                onChange={e => changeShownDate(e.value, 'setMonth')}
+                options={monthOptions}
+                styles={dropdownStyles}
+              />
             </span>
-            <span className={styles.monthAndYearDivider} />
             <span className={styles.yearPicker}>
-              <select
-                value={focusedDate.getFullYear()}
-                onChange={e => changeShownDate(e.target.value, 'setYear')}>
-                {new Array(upperYearLimit - lowerYearLimit + 1)
-                  .fill(upperYearLimit)
-                  .map((val, i) => {
-                    const year = val - i;
-                    return (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    );
-                  })}
-              </select>
+              <Select
+                value={yearOptions.filter(_ => _.value === focusedDate.getFullYear())}
+                isSearchable={false}
+                controlShouldRenderValue={true}
+                onChange={e => changeShownDate(e.value, 'setYear')}
+                options={yearOptions}
+                styles={dropdownStyles}
+              />
             </span>
           </span>
         ) : (
@@ -269,7 +282,7 @@ class Calendar extends PureComponent {
                     disabled={range.disabled}
                     readOnly
                     style={{
-                      textAlign: athlinksCustom ? 'left' : 'auto',
+                      textAlign: 'auto',
                       paddingLeft: athlinksCustom ? 10 : 'auto',
                     }}
                     value={this.formatDateDisplay(range.startDate, 'Select start date')}
@@ -300,7 +313,7 @@ class Calendar extends PureComponent {
                     disabled={range.disabled}
                     readOnly
                     style={{
-                      textAlign: athlinksCustom ? 'left' : 'auto',
+                      textAlign: 'auto',
                       paddingLeft: athlinksCustom ? 10 : 'auto',
                     }}
                     value={this.formatDateDisplay(range.endDate, 'Select end date')}
@@ -386,7 +399,6 @@ class Calendar extends PureComponent {
     return isLongMonth ? scrollArea.longMonthHeight : scrollArea.monthHeight;
   }
   formatDateDisplay(date, defaultText) {
-    console.log(date, 'FOR DEBUGING');
     if (!date) return defaultText;
     return format(date, this.props.dateDisplayFormat, this.dateOptions);
   }
