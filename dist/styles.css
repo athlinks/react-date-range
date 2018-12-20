@@ -99,9 +99,13 @@
           align-items: center;
 }
 
-.rdrMonthPicker{}
+.rdrMonthPicker{
+  width: 100%
+}
 
-.rdrYearPicker{}
+.rdrYearPicker{
+  width: 100%
+}
 
 .rdrNextPrevButton {
   -webkit-box-sizing: inherit;

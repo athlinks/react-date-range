@@ -32,6 +32,10 @@ var _reactList = require('react-list');
 
 var _reactList2 = _interopRequireDefault(_reactList);
 
+var _reactSelect = require('react-select');
+
+var _reactSelect2 = _interopRequireDefault(_reactSelect);
+
 var _max = require('date-fns/max');
 
 var _max2 = _interopRequireDefault(_max);
@@ -312,7 +316,32 @@ var Calendar = function (_PureComponent) {
 
       var upperYearLimit = (maxDate || Calendar.defaultProps.maxDate).getFullYear();
       var lowerYearLimit = (minDate || Calendar.defaultProps.minDate).getFullYear();
+      var monthOptions = locale.localize.months().map(function (month, i) {
+        return { value: i, label: month };
+      });
+      var yearOptions = new Array(upperYearLimit - lowerYearLimit + 1).fill(upperYearLimit).map(function (val, i) {
+        return { value: val - i, label: val - i };
+      });
       var styles = this.styles;
+      var dropdownStyles = {
+        control: function control(provided) {
+          return _extends({}, provided, {
+            border: 'none',
+            boxShadow: 'none'
+          });
+        },
+        indicatorSeparator: function indicatorSeparator(provided) {
+          return _extends({}, provided, {
+            backgroundColor: 'rgb(255,255,255)'
+          });
+        },
+        valueContainer: function valueContainer(provided) {
+          return _extends({}, provided, {
+            justifyContent: 'flex-end'
+          });
+        }
+      };
+
       return _react2.default.createElement(
         'div',
         { onMouseUp: function onMouseUp(e) {
@@ -334,42 +363,34 @@ var Calendar = function (_PureComponent) {
           _react2.default.createElement(
             'span',
             { className: styles.monthPicker },
-            _react2.default.createElement(
-              'select',
-              {
-                value: focusedDate.getMonth(),
-                onChange: function onChange(e) {
-                  return changeShownDate(e.target.value, 'setMonth');
-                } },
-              locale.localize.months().map(function (month, i) {
-                return _react2.default.createElement(
-                  'option',
-                  { key: i, value: i },
-                  month
-                );
-              })
-            )
+            _react2.default.createElement(_reactSelect2.default, {
+              value: monthOptions.filter(function (_) {
+                return _.value === focusedDate.getMonth();
+              }),
+              isSearchable: false,
+              controlShouldRenderValue: true,
+              onChange: function onChange(e) {
+                return changeShownDate(e.value, 'setMonth');
+              },
+              options: monthOptions,
+              styles: dropdownStyles
+            })
           ),
-          _react2.default.createElement('span', { className: styles.monthAndYearDivider }),
           _react2.default.createElement(
             'span',
             { className: styles.yearPicker },
-            _react2.default.createElement(
-              'select',
-              {
-                value: focusedDate.getFullYear(),
-                onChange: function onChange(e) {
-                  return changeShownDate(e.target.value, 'setYear');
-                } },
-              new Array(upperYearLimit - lowerYearLimit + 1).fill(upperYearLimit).map(function (val, i) {
-                var year = val - i;
-                return _react2.default.createElement(
-                  'option',
-                  { key: year, value: year },
-                  year
-                );
-              })
-            )
+            _react2.default.createElement(_reactSelect2.default, {
+              value: yearOptions.filter(function (_) {
+                return _.value === focusedDate.getFullYear();
+              }),
+              isSearchable: false,
+              controlShouldRenderValue: true,
+              onChange: function onChange(e) {
+                return changeShownDate(e.value, 'setYear');
+              },
+              options: yearOptions,
+              styles: dropdownStyles
+            })
           )
         ) : _react2.default.createElement(
           'span',
@@ -440,7 +461,7 @@ var Calendar = function (_PureComponent) {
                 color: range.color || defaultColor,
                 backgroundColor: athlinksCustom ? 'transparent' : 'auto'
               } },
-            _react2.default.createElement(
+            range.startDate && _react2.default.createElement(
               'span',
               {
                 className: (0, _classnames4.default)(styles.dateDisplayItem, _defineProperty({}, styles.dateDisplayItemActive, focusedRange[0] === i && focusedRange[1] === 0), 'athlinksItem'),
@@ -451,12 +472,12 @@ var Calendar = function (_PureComponent) {
                 disabled: range.disabled,
                 readOnly: true,
                 style: {
-                  textAlign: athlinksCustom ? 'left' : 'auto',
+                  textAlign: 'auto',
                   paddingLeft: athlinksCustom ? 10 : 'auto'
                 },
                 value: _this4.formatDateDisplay(range.startDate, 'Select start date')
               }),
-              athlinksCustom && range.startDate && _react2.default.createElement('i', {
+              _react2.default.createElement('i', {
                 onClick: function onClick() {
                   var newRange = {
                     startDate: null,
@@ -466,7 +487,7 @@ var Calendar = function (_PureComponent) {
                 }
               })
             ),
-            _react2.default.createElement(
+            range.endDate && range.endDate !== range.startDate && _react2.default.createElement(
               'span',
               {
                 className: (0, _classnames4.default)(styles.dateDisplayItem, _defineProperty({}, styles.dateDisplayItemActive, focusedRange[0] === i && focusedRange[1] === 1), 'athlinksItem'),
@@ -477,7 +498,7 @@ var Calendar = function (_PureComponent) {
                 disabled: range.disabled,
                 readOnly: true,
                 style: {
-                  textAlign: athlinksCustom ? 'left' : 'auto',
+                  textAlign: 'auto',
                   paddingLeft: athlinksCustom ? 10 : 'auto'
                 },
                 value: _this4.formatDateDisplay(range.endDate, 'Select end date')
@@ -584,7 +605,6 @@ var Calendar = function (_PureComponent) {
   }, {
     key: 'formatDateDisplay',
     value: function formatDateDisplay(date, defaultText) {
-      console.log(date, 'FOR DEBUGING');
       if (!date) return defaultText;
       return (0, _format2.default)(date, this.props.dateDisplayFormat, this.dateOptions);
     }
