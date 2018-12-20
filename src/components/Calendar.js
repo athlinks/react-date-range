@@ -254,25 +254,26 @@ class Calendar extends PureComponent {
                 color: range.color || defaultColor,
                 backgroundColor: athlinksCustom ? 'transparent' : 'auto',
               }}>
-              <span
-                className={classnames(
-                  styles.dateDisplayItem,
-                  {
-                    [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 0,
-                  },
-                  'athlinksItem'
-                )}
-                onFocus={() => this.handleRangeFocusChange(i, 0)}>
-                <input
-                  disabled={range.disabled}
-                  readOnly
-                  style={{
-                    textAlign: athlinksCustom ? 'left' : 'auto',
-                    paddingLeft: athlinksCustom ? 10 : 'auto',
-                  }}
-                  value={this.formatDateDisplay(range.startDate, 'Select start date')}
-                />
-                {athlinksCustom && range.startDate && (
+              {range.startDate && (
+                <span
+                  className={classnames(
+                    styles.dateDisplayItem,
+                    {
+                      [styles.dateDisplayItemActive]:
+                        focusedRange[0] === i && focusedRange[1] === 0,
+                    },
+                    'athlinksItem'
+                  )}
+                  onFocus={() => this.handleRangeFocusChange(i, 0)}>
+                  <input
+                    disabled={range.disabled}
+                    readOnly
+                    style={{
+                      textAlign: athlinksCustom ? 'left' : 'auto',
+                      paddingLeft: athlinksCustom ? 10 : 'auto',
+                    }}
+                    value={this.formatDateDisplay(range.startDate, 'Select start date')}
+                  />
                   <i
                     onClick={() => {
                       const newRange = {
@@ -282,38 +283,41 @@ class Calendar extends PureComponent {
                       updateRange(newRange);
                     }}
                   />
-                )}
-              </span>
-              <span
-                className={classnames(
-                  styles.dateDisplayItem,
-                  {
-                    [styles.dateDisplayItemActive]: focusedRange[0] === i && focusedRange[1] === 1,
-                  },
-                  'athlinksItem'
-                )}
-                onFocus={() => this.handleRangeFocusChange(i, 1)}>
-                <input
-                  disabled={range.disabled}
-                  readOnly
-                  style={{
-                    textAlign: athlinksCustom ? 'left' : 'auto',
-                    paddingLeft: athlinksCustom ? 10 : 'auto',
-                  }}
-                  value={this.formatDateDisplay(range.endDate, 'Select end date')}
-                />
-                {athlinksCustom && range.endDate && (
-                  <i
-                    onClick={() => {
-                      const newRange = {
-                        startDate: range.startDate,
-                        endDate: null,
-                      };
-                      updateRange(newRange);
+                </span>
+              )}
+              {range.endDate && range.endDate !== range.startDate && (
+                <span
+                  className={classnames(
+                    styles.dateDisplayItem,
+                    {
+                      [styles.dateDisplayItemActive]:
+                        focusedRange[0] === i && focusedRange[1] === 1,
+                    },
+                    'athlinksItem'
+                  )}
+                  onFocus={() => this.handleRangeFocusChange(i, 1)}>
+                  <input
+                    disabled={range.disabled}
+                    readOnly
+                    style={{
+                      textAlign: athlinksCustom ? 'left' : 'auto',
+                      paddingLeft: athlinksCustom ? 10 : 'auto',
                     }}
+                    value={this.formatDateDisplay(range.endDate, 'Select end date')}
                   />
-                )}
-              </span>
+                  {athlinksCustom && range.endDate && (
+                    <i
+                      onClick={() => {
+                        const newRange = {
+                          startDate: range.startDate,
+                          endDate: null,
+                        };
+                        updateRange(newRange);
+                      }}
+                    />
+                  )}
+                </span>
+              )}
             </div>
           );
         })}
