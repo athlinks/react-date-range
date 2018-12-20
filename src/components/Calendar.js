@@ -272,18 +272,17 @@ class Calendar extends PureComponent {
                   }}
                   value={this.formatDateDisplay(range.startDate, 'Select start date')}
                 />
-                {athlinksCustom &&
-                  range.startDate && (
-                    <i
-                      onClick={() => {
-                        const newRange = {
-                          startDate: null,
-                          endDate: range.endDate,
-                        };
-                        updateRange(newRange);
-                      }}
-                    />
-                  )}
+                {athlinksCustom && range.startDate && (
+                  <i
+                    onClick={() => {
+                      const newRange = {
+                        startDate: null,
+                        endDate: range.endDate,
+                      };
+                      updateRange(newRange);
+                    }}
+                  />
+                )}
               </span>
               <span
                 className={classnames(
@@ -303,18 +302,17 @@ class Calendar extends PureComponent {
                   }}
                   value={this.formatDateDisplay(range.endDate, 'Select end date')}
                 />
-                {athlinksCustom &&
-                  range.endDate && (
-                    <i
-                      onClick={() => {
-                        const newRange = {
-                          startDate: range.startDate,
-                          endDate: null,
-                        };
-                        updateRange(newRange);
-                      }}
-                    />
-                  )}
+                {athlinksCustom && range.endDate && (
+                  <i
+                    onClick={() => {
+                      const newRange = {
+                        startDate: range.startDate,
+                        endDate: null,
+                      };
+                      updateRange(newRange);
+                    }}
+                  />
+                )}
               </span>
             </div>
           );
@@ -324,7 +322,6 @@ class Calendar extends PureComponent {
   }
   onDragSelectionStart(date) {
     const { onChange, dragSelectionEnabled } = this.props;
-
     if (dragSelectionEnabled) {
       this.setState({
         drag: {
@@ -385,7 +382,6 @@ class Calendar extends PureComponent {
     return isLongMonth ? scrollArea.longMonthHeight : scrollArea.monthHeight;
   }
   formatDateDisplay(date, defaultText) {
-    console.log(date, 'FOR DEBUGING');
     if (!date) return defaultText;
     return format(date, this.props.dateDisplayFormat, this.dateOptions);
   }
