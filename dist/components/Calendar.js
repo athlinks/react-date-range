@@ -457,7 +457,6 @@ var Calendar = function (_PureComponent) {
         { className: styles.dateDisplayWrapper },
         ranges.map(function (range, i) {
           if (range.showDateDisplay === false || range.disabled && !range.showDateDisplay) return null;
-          console.log(range);
           return _react2.default.createElement(
             'div',
             {
