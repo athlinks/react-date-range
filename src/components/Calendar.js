@@ -250,6 +250,12 @@ class Calendar extends PureComponent {
       </div>
     );
   }
+  areDatesEqual(range) {
+    return (
+      range.startDate && range.startDate && range.startDate.getTime() === range.endDate.getTime()
+    );
+  }
+
   renderDateDisplay() {
     const { focusedRange, color, ranges, rangeColors, athlinksCustom, updateRange } = this.props;
     const defaultColor = rangeColors[focusedRange[0]] || color;
@@ -291,15 +297,15 @@ class Calendar extends PureComponent {
                   <i
                     onClick={() => {
                       const newRange = {
-                        startDate: range.startDate !== range.endDate ? range.endDate : null,
-                        endDate: range.startDate !== range.endDate ? range.endDate : null,
+                        startDate: !this.areDatesEqual(range) ? range.endDate : null,
+                        endDate: !this.areDatesEqual(range) ? range.endDate : null,
                       };
                       updateRange(newRange);
                     }}
                   />
                 </span>
               )}
-              {range.endDate && range.endDate !== range.startDate && (
+              {range.endDate && !this.areDatesEqual(range) && (
                 <span
                   className={classnames(
                     styles.dateDisplayItem,
@@ -323,8 +329,8 @@ class Calendar extends PureComponent {
                     <i
                       onClick={() => {
                         const newRange = {
-                          startDate: range.startDate !== range.endDate ? range.startDate : null,
-                          endDate: range.startDate !== range.endDate ? range.startDate : null,
+                          startDate: !this.areDatesEqual(range) ? range.startDate : null,
+                          endDate: !this.areDatesEqual(range) ? range.startDate : null,
                         };
                         updateRange(newRange);
                       }}

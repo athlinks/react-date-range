@@ -433,6 +433,11 @@ var Calendar = function (_PureComponent) {
       );
     }
   }, {
+    key: 'areDatesEqual',
+    value: function areDatesEqual(range) {
+      return range.startDate && range.startDate && range.startDate.getTime() === range.endDate.getTime();
+    }
+  }, {
     key: 'renderDateDisplay',
     value: function renderDateDisplay() {
       var _this4 = this;
@@ -481,14 +486,14 @@ var Calendar = function (_PureComponent) {
               _react2.default.createElement('i', {
                 onClick: function onClick() {
                   var newRange = {
-                    startDate: range.startDate !== range.endDate ? range.endDate : null,
-                    endDate: range.startDate !== range.endDate ? range.endDate : null
+                    startDate: !_this4.areDatesEqual(range) ? range.endDate : null,
+                    endDate: !_this4.areDatesEqual(range) ? range.endDate : null
                   };
                   updateRange(newRange);
                 }
               })
             ),
-            range.endDate && range.endDate !== range.startDate && _react2.default.createElement(
+            range.endDate && !_this4.areDatesEqual(range) && _react2.default.createElement(
               'span',
               {
                 className: (0, _classnames4.default)(styles.dateDisplayItem, _defineProperty({}, styles.dateDisplayItemActive, focusedRange[0] === i && focusedRange[1] === 1), 'athlinksItem'),
@@ -507,8 +512,8 @@ var Calendar = function (_PureComponent) {
               athlinksCustom && range.endDate && _react2.default.createElement('i', {
                 onClick: function onClick() {
                   var newRange = {
-                    startDate: range.startDate !== range.endDate ? range.startDate : null,
-                    endDate: range.startDate !== range.endDate ? range.startDate : null
+                    startDate: !_this4.areDatesEqual(range) ? range.startDate : null,
+                    endDate: !_this4.areDatesEqual(range) ? range.startDate : null
                   };
                   updateRange(newRange);
                 }
