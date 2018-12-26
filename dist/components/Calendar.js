@@ -452,6 +452,7 @@ var Calendar = function (_PureComponent) {
         { className: styles.dateDisplayWrapper },
         ranges.map(function (range, i) {
           if (range.showDateDisplay === false || range.disabled && !range.showDateDisplay) return null;
+          console.log(range);
           return _react2.default.createElement(
             'div',
             {
@@ -480,8 +481,8 @@ var Calendar = function (_PureComponent) {
               _react2.default.createElement('i', {
                 onClick: function onClick() {
                   var newRange = {
-                    startDate: null,
-                    endDate: range.endDate
+                    startDate: range.startDate !== range.endDate ? range.endDate : null,
+                    endDate: range.startDate !== range.endDate ? range.endDate : null
                   };
                   updateRange(newRange);
                 }
@@ -506,8 +507,8 @@ var Calendar = function (_PureComponent) {
               athlinksCustom && range.endDate && _react2.default.createElement('i', {
                 onClick: function onClick() {
                   var newRange = {
-                    startDate: range.startDate,
-                    endDate: null
+                    startDate: range.startDate !== range.endDate ? range.startDate : null,
+                    endDate: range.startDate !== range.endDate ? range.startDate : null
                   };
                   updateRange(newRange);
                 }

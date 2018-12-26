@@ -259,6 +259,7 @@ class Calendar extends PureComponent {
         {ranges.map((range, i) => {
           if (range.showDateDisplay === false || (range.disabled && !range.showDateDisplay))
             return null;
+          console.log(range);
           return (
             <div
               className={styles.dateDisplay}
@@ -290,8 +291,8 @@ class Calendar extends PureComponent {
                   <i
                     onClick={() => {
                       const newRange = {
-                        startDate: null,
-                        endDate: range.endDate,
+                        startDate: range.startDate !== range.endDate ? range.endDate : null,
+                        endDate: range.startDate !== range.endDate ? range.endDate : null,
                       };
                       updateRange(newRange);
                     }}
@@ -322,8 +323,8 @@ class Calendar extends PureComponent {
                     <i
                       onClick={() => {
                         const newRange = {
-                          startDate: range.startDate,
-                          endDate: null,
+                          startDate: range.startDate !== range.endDate ? range.startDate : null,
+                          endDate: range.startDate !== range.endDate ? range.startDate : null,
                         };
                         updateRange(newRange);
                       }}
