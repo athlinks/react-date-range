@@ -184,6 +184,10 @@ class Calendar extends PureComponent {
         ...provided,
         justifyContent: 'flex-end',
       }),
+      singleValue: provided => ({
+        ...provided,
+        paddingRight: 15,
+      }),
     };
 
     return (
@@ -289,7 +293,7 @@ class Calendar extends PureComponent {
                     readOnly
                     style={{
                       textAlign: 'auto',
-                      paddingLeft: athlinksCustom ? 10 : 'auto',
+                      paddingRight: athlinksCustom ? 10 : 'auto',
                     }}
                     value={this.formatDateDisplay(range.startDate, 'Select start date')}
                   />
@@ -320,7 +324,7 @@ class Calendar extends PureComponent {
                     readOnly
                     style={{
                       textAlign: 'auto',
-                      paddingLeft: athlinksCustom ? 10 : 'auto',
+                      paddingRight: athlinksCustom ? 10 : 'auto',
                     }}
                     value={this.formatDateDisplay(range.endDate, 'Select end date')}
                   />
@@ -548,14 +552,14 @@ Calendar.defaultProps = {
   showPreview: true,
   displayMode: 'date',
   months: 1,
-  color: '#3d91ff',
+  color: '#26aadf',
   scroll: {
     enabled: false,
   },
   direction: 'vertical',
   maxDate: addYears(new Date(), 20),
   minDate: addYears(new Date(), -100),
-  rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
+  rangeColors: ['#26aadf', '#3ecf8e', '#fed14c'],
   dragSelectionEnabled: true,
   athlinksCustom: false,
 };

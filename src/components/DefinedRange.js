@@ -69,48 +69,50 @@ class DefinedRanges extends Component {
               );
             })}
           {athlinksCustom &&
-            this.props.staticRanges.filter(_ => !!_.ranges).map((staticRange, i) => {
-              return (
-                <div key={i}>
-                  <div className={cx(styles.rangeLabel)}>{staticRange.label}</div>
-                  {staticRange.ranges.map((sectionRange, i) => {
-                    const { selectedRange, focusedRangeIndex } = this.getSelectedRange(
-                      ranges,
-                      sectionRange
-                    );
-                    return (
-                      <button
-                        type="button"
-                        className={cx(styles.staticRange, {
-                          [styles.staticRangeSelected]: Boolean(selectedRange),
-                        })}
-                        style={{
-                          color: selectedRange
-                            ? selectedRange.color || rangeColors[focusedRangeIndex]
-                            : null,
-                          width: '100%',
-                          border: 'none',
-                        }}
-                        key={i}
-                        onClick={() => this.handleRangeChange(sectionRange.range(this.props))}
-                        onFocus={() =>
-                          onPreviewChange && onPreviewChange(sectionRange.range(this.props))
-                        }
-                        onMouseOver={() =>
-                          onPreviewChange && onPreviewChange(sectionRange.range(this.props))
-                        }
-                        onMouseLeave={() => {
-                          this.props.onPreviewChange && this.props.onPreviewChange();
-                        }}>
-                        <span tabIndex={-1} className={styles.staticRangeLabel}>
-                          {sectionRange.label}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              );
-            })}
+            this.props.staticRanges
+              .filter(_ => !!_.ranges)
+              .map((staticRange, i) => {
+                return (
+                  <div key={i}>
+                    <div className={cx(styles.rangeLabel)}>{staticRange.label}</div>
+                    {staticRange.ranges.map((sectionRange, i) => {
+                      const { selectedRange, focusedRangeIndex } = this.getSelectedRange(
+                        ranges,
+                        sectionRange
+                      );
+                      return (
+                        <button
+                          type="button"
+                          className={cx(styles.staticRange, {
+                            [styles.staticRangeSelected]: Boolean(selectedRange),
+                          })}
+                          style={{
+                            color: selectedRange
+                              ? selectedRange.color || rangeColors[focusedRangeIndex]
+                              : null,
+                            width: '100%',
+                            border: 'none',
+                          }}
+                          key={i}
+                          onClick={() => this.handleRangeChange(sectionRange.range(this.props))}
+                          onFocus={() =>
+                            onPreviewChange && onPreviewChange(sectionRange.range(this.props))
+                          }
+                          onMouseOver={() =>
+                            onPreviewChange && onPreviewChange(sectionRange.range(this.props))
+                          }
+                          onMouseLeave={() => {
+                            this.props.onPreviewChange && this.props.onPreviewChange();
+                          }}>
+                          <span tabIndex={-1} className={styles.staticRangeLabel}>
+                            {sectionRange.label}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                );
+              })}
         </div>
         <div className={styles.inputRanges}>
           {!athlinksCustom &&
@@ -161,7 +163,7 @@ DefinedRanges.defaultProps = {
   inputRanges: defaultInputRanges,
   staticRanges: defaultStaticRanges,
   ranges: [],
-  rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
+  rangeColors: ['#26aadf', '#3ecf8e', '#fed14c'],
   focusedRange: [0, 0],
   athlinksCustom: false,
 };
