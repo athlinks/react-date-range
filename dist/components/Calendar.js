@@ -484,7 +484,8 @@ var Calendar = function (_PureComponent) {
                 style: {
                   textAlign: 'auto',
                   width: 100,
-                  paddingRight: 25
+                  paddingRight: 25,
+                  fontSize: 14
                 },
                 value: _this4.formatDateDisplay(range.startDate, 'Select start date')
               }),
@@ -511,7 +512,8 @@ var Calendar = function (_PureComponent) {
                 style: {
                   textAlign: 'auto',
                   width: 100,
-                  paddingRight: 25
+                  paddingRight: 25,
+                  fontSize: 14
                 },
                 value: _this4.formatDateDisplay(range.endDate, 'Select end date')
               }),
