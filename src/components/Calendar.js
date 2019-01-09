@@ -295,6 +295,7 @@ class Calendar extends PureComponent {
                       textAlign: 'auto',
                       width: 100,
                       paddingRight: 25,
+                      fontSize: 14,
                     }}
                     value={this.formatDateDisplay(range.startDate, 'Select start date')}
                   />
@@ -327,6 +328,7 @@ class Calendar extends PureComponent {
                       textAlign: 'auto',
                       width: 100,
                       paddingRight: 25,
+                      fontSize: 14,
                     }}
                     value={this.formatDateDisplay(range.endDate, 'Select end date')}
                   />
