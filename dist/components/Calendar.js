@@ -339,6 +339,11 @@ var Calendar = function (_PureComponent) {
           return _extends({}, provided, {
             justifyContent: 'flex-end'
           });
+        },
+        singleValue: function singleValue(provided) {
+          return _extends({}, provided, {
+            paddingRight: 15
+          });
         }
       };
 
@@ -478,7 +483,7 @@ var Calendar = function (_PureComponent) {
                 readOnly: true,
                 style: {
                   textAlign: 'auto',
-                  paddingLeft: athlinksCustom ? 10 : 'auto'
+                  paddingRight: athlinksCustom ? 10 : 'auto'
                 },
                 value: _this4.formatDateDisplay(range.startDate, 'Select start date')
               }),
@@ -504,7 +509,7 @@ var Calendar = function (_PureComponent) {
                 readOnly: true,
                 style: {
                   textAlign: 'auto',
-                  paddingLeft: athlinksCustom ? 10 : 'auto'
+                  paddingRight: athlinksCustom ? 10 : 'auto'
                 },
                 value: _this4.formatDateDisplay(range.endDate, 'Select end date')
               }),
@@ -753,14 +758,14 @@ Calendar.defaultProps = {
   showPreview: true,
   displayMode: 'date',
   months: 1,
-  color: '#3d91ff',
+  color: '#26aadf',
   scroll: {
     enabled: false
   },
   direction: 'vertical',
   maxDate: (0, _addYears2.default)(new Date(), 20),
   minDate: (0, _addYears2.default)(new Date(), -100),
-  rangeColors: ['#3d91ff', '#3ecf8e', '#fed14c'],
+  rangeColors: ['#26aadf', '#3ecf8e', '#fed14c'],
   dragSelectionEnabled: true,
   athlinksCustom: false
 };
