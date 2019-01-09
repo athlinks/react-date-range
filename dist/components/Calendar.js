@@ -483,7 +483,7 @@ var Calendar = function (_PureComponent) {
                 readOnly: true,
                 style: {
                   textAlign: 'auto',
-                  paddingRight: athlinksCustom ? 10 : 'auto'
+                  paddingRight: 25
                 },
                 value: _this4.formatDateDisplay(range.startDate, 'Select start date')
               }),
@@ -509,7 +509,7 @@ var Calendar = function (_PureComponent) {
                 readOnly: true,
                 style: {
                   textAlign: 'auto',
-                  paddingRight: athlinksCustom ? 10 : 'auto'
+                  paddingRight: 25
                 },
                 value: _this4.formatDateDisplay(range.endDate, 'Select end date')
               }),

@@ -293,7 +293,7 @@ class Calendar extends PureComponent {
                     readOnly
                     style={{
                       textAlign: 'auto',
-                      paddingRight: athlinksCustom ? 10 : 'auto',
+                      paddingRight: 25,
                     }}
                     value={this.formatDateDisplay(range.startDate, 'Select start date')}
                   />
@@ -324,7 +324,7 @@ class Calendar extends PureComponent {
                     readOnly
                     style={{
                       textAlign: 'auto',
-                      paddingRight: athlinksCustom ? 10 : 'auto',
+                      paddingRight: 25,
                     }}
                     value={this.formatDateDisplay(range.endDate, 'Select end date')}
                   />
