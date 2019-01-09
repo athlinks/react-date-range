@@ -231,7 +231,7 @@ DateRange.defaultProps = {
   classNames: {},
   ranges: [],
   moveRangeOnFirstSelection: false,
-  rangeColors: ['#26aadf', '#3ecf8e', '#fed14c'],
+  rangeColors: ['#16a9e1', '#3ecf8e', '#fed14c'],
   disabledDates: [],
   athlinksCustom: false
 };

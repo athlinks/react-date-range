@@ -117,7 +117,7 @@ ranges                               | *Object[] | []               | Defines ra
 moveRangeOnFirstSelection(DateRange) | Boolean   | false            | move range on startDate selection. Otherwise endDate will replace with startDate.
 onChange(Calendar)                   | Func      |                  | callback function for date changes. fn(date: Date)
 onChange(DateRange)                  | Func      |                  | callback function for range changes. fn(changes). changes contains changed ranges with new `startDate`/`endDate` properties.
-color(Calendar)                      | String    | `#26aadf`        | defines color for selected date in Calendar
+color(Calendar)                      | String    | `#16a9e1`        | defines color for selected date in Calendar
 date(Calendar)                       | Date      |                  | date value for Calendar
 showDateDisplay(DateRange)           | Boolean   | true             | show/hide selection display row. Uses `dateDisplayFormat` for formatter
 onShownDateChange(DateRange,Calendar)| Function  |                  | Callback function that is called when the shown date changes
