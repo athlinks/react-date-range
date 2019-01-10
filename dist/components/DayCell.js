@@ -100,19 +100,27 @@ var DayCell = function (_Component) {
       var _props = this.props,
           day = _props.day,
           disabled = _props.disabled,
-          onPreviewChange = _props.onPreviewChange;
+          onPreviewChange = _props.onPreviewChange,
+          isMobile = _props.isMobile;
 
       var stateChanges = {};
       if (disabled) {
         onPreviewChange();
         return;
       }
-
+      console.log(this.props, event.type);
       switch (event.type) {
         case 'mouseenter':
-          this.props.onMouseEnter(day);
-          onPreviewChange(day);
-          stateChanges.hover = true;
+          if (isMobile) {
+            this.props.onMouseDown(day);
+            event.stopPropagation();
+            stateChanges.active = false;
+            this.props.onMouseUp(day);
+          } else {
+            this.props.onMouseEnter(day);
+            onPreviewChange(day);
+            stateChanges.hover = true;
+          }
           break;
         case 'blur':
         case 'mouseleave':
