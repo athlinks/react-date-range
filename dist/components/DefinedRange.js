@@ -151,7 +151,7 @@ var DefinedRanges = function (_Component) {
                     type: 'button',
                     className: (0, _classnames2.default)(_styles2.default.staticRange, _defineProperty({}, _styles2.default.staticRangeSelected, Boolean(selectedRange))),
                     style: {
-                      color: selectedRange ? selectedRange.color || rangeColors[focusedRangeIndex] : null,
+                      color: selectedRange ? selectedRange.color || rangeColors[focusedRangeIndex] : '#4a4a4a',
                       width: '100%',
                       border: 'none'
                     },

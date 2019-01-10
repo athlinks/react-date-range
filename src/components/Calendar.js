@@ -328,10 +328,10 @@ class Calendar extends PureComponent {
                   style={{
                     marginRight: 7,
                     marginLeft: 7,
-                    paddingRight: 7,
-                    paddingLeft: 7,
+                    paddingRight: 3,
+                    paddingLeft: 3,
                     marginBottom: 18,
-                    borderBottom: '2px solid black',
+                    borderBottom: '1px solid #4a4a4a',
                   }}
                 />
               )}

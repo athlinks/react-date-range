@@ -342,7 +342,8 @@ var Calendar = function (_PureComponent) {
         },
         singleValue: function singleValue(provided) {
           return _extends({}, provided, {
-            paddingRight: 15
+            paddingRight: 15,
+            color: '#4a4a4a'
           });
         },
         menu: function menu(provided) {
@@ -353,6 +354,11 @@ var Calendar = function (_PureComponent) {
         menuList: function menuList(provided) {
           return _extends({}, provided, {
             zIndex: 100
+          });
+        },
+        option: function option(provided) {
+          return _extends({}, provided, {
+            color: '#4a4a4a'
           });
         }
       };
@@ -513,10 +519,10 @@ var Calendar = function (_PureComponent) {
               style: {
                 marginRight: 7,
                 marginLeft: 7,
-                paddingRight: 7,
-                paddingLeft: 7,
+                paddingRight: 3,
+                paddingLeft: 3,
                 marginBottom: 18,
-                borderBottom: '2px solid black'
+                borderBottom: '1px solid #4a4a4a'
               }
             }),
             range.endDate && !_this4.areDatesEqual(range) && _react2.default.createElement(

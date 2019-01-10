@@ -30,7 +30,7 @@
           flex: 1 1;
   width: 0;
   text-align: center;
-  color: inherit;
+  color: #4a4a4a;
 }
 
 .rdrDateDisplayItem + .rdrDateDisplayItem{
@@ -198,7 +198,7 @@
 }
 
 .rdrDayNumber span{
-    color: #1d2429;
+    color: #4a4a4a;
   }
 
 .rdrDayDisabled {
