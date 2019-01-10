@@ -234,6 +234,36 @@ export default class Main extends Component {
               moveRangeOnFirstSelection={false}
               className={'PreviewArea'}
               months={1}
+              isMobile={false}
+              athlinksCustom={true}
+              staticRanges={createStaticRanges(this.staticRanges, true)}
+              ranges={[this.state.dateRangePicker.selection]}
+              direction="horizontal"
+            />
+          </div>
+        </Section>
+
+        <Section title="Athlinks Mobile">
+          <div>
+            <input
+              type="text"
+              readOnly
+              value={formatDateDisplay(this.state.dateRangePicker.selection.startDate)}
+            />
+            <input
+              type="text"
+              readOnly
+              value={formatDateDisplay(this.state.dateRangePicker.selection.endDate)}
+            />
+          </div>
+          <div>
+            <DateRangePicker
+              onChange={this.handleRangeChange.bind(this, 'dateRangePicker')}
+              showSelectionPreview={true}
+              moveRangeOnFirstSelection={false}
+              className={'PreviewArea'}
+              months={1}
+              isMobile={true}
               athlinksCustom={true}
               staticRanges={createStaticRanges(this.staticRanges, true)}
               ranges={[this.state.dateRangePicker.selection]}
