@@ -1,5 +1,5 @@
 .rdrCalendarWrapper{
-  color: #000000;
+  color: #4a4a4a;
   font-size: 14px;
 }
 
@@ -20,7 +20,7 @@
     border: 0px;
     background: transparent;
     width: 100%;
-    color: #849095;
+    color: #4a4a4a;
   }
 }
 
@@ -30,7 +30,7 @@
 
 .rdrDateDisplayItemActive{
   input{
-    color: #7d888d
+    color: #4a4a4a
   }
 }
 
@@ -136,7 +136,7 @@
   line-height: 3.000em;
   height: 3.000em;
   text-align: center;
-  color: #1d2429;
+  color: #4a4a4a;
   &:focus {
     outline: 0;
   }
@@ -399,6 +399,6 @@
 .rdrMonthName{
   text-align: left;
   font-weight: 600;
-  color: #849095;
+  color: #4a4a4a;
   padding: 0.833em;
 }

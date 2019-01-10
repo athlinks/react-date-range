@@ -187,6 +187,7 @@ class Calendar extends PureComponent {
       singleValue: provided => ({
         ...provided,
         paddingRight: 15,
+        color: '#4a4a4a',
       }),
       menu: provided => ({
         ...provided,
@@ -195,6 +196,10 @@ class Calendar extends PureComponent {
       menuList: provided => ({
         ...provided,
         zIndex: 100,
+      }),
+      option: provided => ({
+        ...provided,
+        color: '#4a4a4a',
       }),
     };
 

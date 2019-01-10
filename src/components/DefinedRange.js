@@ -96,7 +96,7 @@ class DefinedRanges extends Component {
                           style={{
                             color: selectedRange
                               ? selectedRange.color || rangeColors[focusedRangeIndex]
-                              : null,
+                              : '#4a4a4a',
                             width: '100%',
                             border: 'none',
                           }}
