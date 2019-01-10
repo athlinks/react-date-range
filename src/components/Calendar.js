@@ -188,6 +188,10 @@ class Calendar extends PureComponent {
         ...provided,
         paddingRight: 15,
       }),
+      menu: provided => ({
+        ...provided,
+        zIndex: 100,
+      }),
     };
 
     return (
