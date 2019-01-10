@@ -319,6 +319,18 @@ class Calendar extends PureComponent {
                 </span>
               )}
               {range.endDate && !this.areDatesEqual(range) && (
+                <div
+                  style={{
+                    marginRight: 7,
+                    marginLeft: 7,
+                    paddingRight: 7,
+                    paddingLeft: 7,
+                    marginBottom: 18,
+                    borderBottom: '2px solid black',
+                  }}
+                />
+              )}
+              {range.endDate && !this.areDatesEqual(range) && (
                 <span
                   className={classnames(
                     styles.dateDisplayItem,

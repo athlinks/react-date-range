@@ -509,6 +509,16 @@ var Calendar = function (_PureComponent) {
                 }
               })
             ),
+            range.endDate && !_this4.areDatesEqual(range) && _react2.default.createElement('div', {
+              style: {
+                marginRight: 7,
+                marginLeft: 7,
+                paddingRight: 7,
+                paddingLeft: 7,
+                marginBottom: 18,
+                borderBottom: '2px solid black'
+              }
+            }),
             range.endDate && !_this4.areDatesEqual(range) && _react2.default.createElement(
               'span',
               {
