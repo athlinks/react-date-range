@@ -21,16 +21,17 @@ class DayCell extends Component {
 
   handleKeyEvent(event) {
     const { day } = this.props;
-    switch (event.keyCode) {
-      case 13: //space
-      case 32: //enter
-        if (event.type === 'keydown') {
-          this.props.onMouseDown(day);
-        } else {
-          this.props.onMouseUp(day);
-        }
-        break;
-    }
+    // Will remove this for now
+    // switch (event.keyCode) {
+    //   case 13: //space
+    //   case 32: //enter
+    //     if (event.type === 'keydown') {
+    //       this.props.onMouseDown(day);
+    //     } else {
+    //       this.props.onMouseUp(day);
+    //     }
+    //     break;
+    // }
   }
   handleMouseEvent(event) {
     const { day, disabled, onPreviewChange } = this.props;

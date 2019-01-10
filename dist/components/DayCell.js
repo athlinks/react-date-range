@@ -82,18 +82,17 @@ var DayCell = function (_Component) {
     key: 'handleKeyEvent',
     value: function handleKeyEvent(event) {
       var day = this.props.day;
-
-      switch (event.keyCode) {
-        case 13: //space
-        case 32:
-          //enter
-          if (event.type === 'keydown') {
-            this.props.onMouseDown(day);
-          } else {
-            this.props.onMouseUp(day);
-          }
-          break;
-      }
+      // Will remove this for now
+      // switch (event.keyCode) {
+      //   case 13: //space
+      //   case 32: //enter
+      //     if (event.type === 'keydown') {
+      //       this.props.onMouseDown(day);
+      //     } else {
+      //       this.props.onMouseUp(day);
+      //     }
+      //     break;
+      // }
     }
   }, {
     key: 'handleMouseEvent',
