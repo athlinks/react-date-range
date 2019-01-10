@@ -86,7 +86,8 @@ var DefinedRanges = function (_Component) {
           ranges = _props2.ranges,
           rangeColors = _props2.rangeColors,
           className = _props2.className,
-          athlinksCustom = _props2.athlinksCustom;
+          athlinksCustom = _props2.athlinksCustom,
+          isMobile = _props2.isMobile;
 
       return _react2.default.createElement(
         'div',
@@ -162,10 +163,14 @@ var DefinedRanges = function (_Component) {
                       return onPreviewChange && onPreviewChange(sectionRange.range(_this2.props));
                     },
                     onMouseOver: function onMouseOver() {
-                      return onPreviewChange && onPreviewChange(sectionRange.range(_this2.props));
+                      if (isMobile) {
+                        _this2.handleRangeChange(sectionRange.range(_this2.props));
+                      } else {
+                        onPreviewChange && onPreviewChange(sectionRange.range(_this2.props));
+                      }
                     },
                     onMouseLeave: function onMouseLeave() {
-                      _this2.props.onPreviewChange && _this2.props.onPreviewChange();
+                      return _this2.props.onPreviewChange && _this2.props.onPreviewChange();
                     } },
                   _react2.default.createElement(
                     'span',
