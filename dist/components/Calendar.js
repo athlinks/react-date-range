@@ -344,6 +344,11 @@ var Calendar = function (_PureComponent) {
           return _extends({}, provided, {
             paddingRight: 15
           });
+        },
+        menu: function menu(provided) {
+          return _extends({}, provided, {
+            zIndex: 100
+          });
         }
       };
 
