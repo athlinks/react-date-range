@@ -349,6 +349,11 @@ var Calendar = function (_PureComponent) {
           return _extends({}, provided, {
             zIndex: 100
           });
+        },
+        menuList: function menuList(provided) {
+          return _extends({}, provided, {
+            zIndex: 100
+          });
         }
       };
 
