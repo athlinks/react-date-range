@@ -34,18 +34,25 @@ class DayCell extends Component {
     // }
   }
   handleMouseEvent(event) {
-    const { day, disabled, onPreviewChange } = this.props;
+    const { day, disabled, onPreviewChange, isMobile } = this.props;
     const stateChanges = {};
     if (disabled) {
       onPreviewChange();
       return;
     }
-
+    console.log(this.props, event.type);
     switch (event.type) {
       case 'mouseenter':
-        this.props.onMouseEnter(day);
-        onPreviewChange(day);
-        stateChanges.hover = true;
+        if (isMobile) {
+          this.props.onMouseDown(day);
+          event.stopPropagation();
+          stateChanges.active = false;
+          this.props.onMouseUp(day);
+        } else {
+          this.props.onMouseEnter(day);
+          onPreviewChange(day);
+          stateChanges.hover = true;
+        }
         break;
       case 'blur':
       case 'mouseleave':
