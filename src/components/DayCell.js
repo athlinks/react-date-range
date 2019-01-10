@@ -40,7 +40,7 @@ class DayCell extends Component {
       onPreviewChange();
       return;
     }
-    console.log(this.props, event.type);
+
     switch (event.type) {
       case 'mouseenter':
         if (isMobile) {
