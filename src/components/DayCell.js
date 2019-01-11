@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import {isIOS} from 'react-device-detect';
 import { startOfDay, format, isSameDay, isAfter, isBefore, endOfDay } from 'date-fns';
 
 class DayCell extends Component {
@@ -34,7 +35,7 @@ class DayCell extends Component {
     // }
   }
   handleMouseEvent(event) {
-    const { day, disabled, onPreviewChange, isMobile } = this.props;
+    const { day, disabled, onPreviewChange} = this.props;
     const stateChanges = {};
     if (disabled) {
       onPreviewChange();
@@ -43,7 +44,7 @@ class DayCell extends Component {
 
     switch (event.type) {
       case 'mouseenter':
-        if (isMobile) {
+        if (isIOS) {
           this.props.onMouseDown(day);
           event.stopPropagation();
           stateChanges.active = false;
