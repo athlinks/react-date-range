@@ -21,6 +21,8 @@ var _classnames4 = require('classnames');
 
 var _classnames5 = _interopRequireDefault(_classnames4);
 
+var _reactDeviceDetect = require('react-device-detect');
+
 var _endOfDay = require('date-fns/endOfDay');
 
 var _endOfDay2 = _interopRequireDefault(_endOfDay);
@@ -100,8 +102,7 @@ var DayCell = function (_Component) {
       var _props = this.props,
           day = _props.day,
           disabled = _props.disabled,
-          onPreviewChange = _props.onPreviewChange,
-          isMobile = _props.isMobile;
+          onPreviewChange = _props.onPreviewChange;
 
       var stateChanges = {};
       if (disabled) {
@@ -111,7 +112,7 @@ var DayCell = function (_Component) {
 
       switch (event.type) {
         case 'mouseenter':
-          if (isMobile) {
+          if (_reactDeviceDetect.isIOS) {
             this.props.onMouseDown(day);
             event.stopPropagation();
             stateChanges.active = false;
