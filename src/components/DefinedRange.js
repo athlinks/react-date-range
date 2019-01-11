@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles';
+import CheckMark from 'react-icons/lib/md/check';
+import { isIOS } from 'react-device-detect';
 import { defaultInputRanges, defaultStaticRanges } from '../defaultRanges';
 import { rangeShape } from './DayCell';
 import cx from 'classnames';
@@ -31,14 +33,7 @@ class DefinedRanges extends Component {
     return { selectedRange, focusedRangeIndex };
   }
   render() {
-    const {
-      onPreviewChange,
-      ranges,
-      rangeColors,
-      className,
-      athlinksCustom,
-      isMobile,
-    } = this.props;
+    const { onPreviewChange, ranges, rangeColors, className, athlinksCustom } = this.props;
     return (
       <div className={cx(styles.definedRangesWrapper, className)}>
         {this.props.headerContent}
@@ -106,7 +101,7 @@ class DefinedRanges extends Component {
                             onPreviewChange && onPreviewChange(sectionRange.range(this.props))
                           }
                           onMouseOver={() => {
-                            if (isMobile) {
+                            if (isIOS) {
                               this.handleRangeChange(sectionRange.range(this.props));
                             } else {
                               onPreviewChange && onPreviewChange(sectionRange.range(this.props));
@@ -117,6 +112,24 @@ class DefinedRanges extends Component {
                           }>
                           <span tabIndex={-1} className={styles.staticRangeLabel}>
                             {sectionRange.label}
+                            <div
+                              style={{
+                                float: 'right',
+                                border: '1px solid',
+                                borderRadius: 10,
+                                display: selectedRange ? 'block' : 'none',
+                                height: 20,
+                                width: 20,
+                              }}>
+                              <CheckMark
+                                style={{
+                                  height: 20,
+                                  width: 20,
+                                  paddingBottom: 2,
+                                  paddingRight: 2,
+                                }}
+                              />
+                            </div>
                           </span>
                         </button>
                       );

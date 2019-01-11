@@ -150,7 +150,7 @@ class DayCell extends Component {
           [styles.endEdge]: range.isEndEdge,
           [styles.inRange]: range.isInRange,
         })}
-        style={{ color: range.color || this.props.color }}
+        style={{ color: range.color || this.props.color, margin: -2 }}
       />
     ));
   }

@@ -170,7 +170,7 @@ class Calendar extends PureComponent {
       .fill(upperYearLimit)
       .map((val, i) => ({ value: val - i, label: val - i }));
     const styles = this.styles;
-    const dropdownStyles = {
+    const dropdownStyles = isMonth => ({
       control: provided => ({
         ...provided,
         border: 'none',
@@ -186,7 +186,7 @@ class Calendar extends PureComponent {
       }),
       singleValue: provided => ({
         ...provided,
-        paddingRight: 15,
+        paddingRight: isMonth ? 25 : 10,
         color: '#4a4a4a',
       }),
       menu: provided => ({
@@ -201,7 +201,7 @@ class Calendar extends PureComponent {
         ...provided,
         color: '#4a4a4a',
       }),
-    };
+    });
 
     return (
       <div onMouseUp={e => e.stopPropagation()} className={styles.monthAndYearWrapper}>
@@ -222,7 +222,7 @@ class Calendar extends PureComponent {
                 controlShouldRenderValue={true}
                 onChange={e => changeShownDate(e.value, 'setMonth')}
                 options={monthOptions}
-                styles={dropdownStyles}
+                styles={dropdownStyles(true)}
               />
             </span>
             <span className={styles.yearPicker}>
@@ -232,7 +232,7 @@ class Calendar extends PureComponent {
                 controlShouldRenderValue={true}
                 onChange={e => changeShownDate(e.value, 'setYear')}
                 options={yearOptions}
-                styles={dropdownStyles}
+                styles={dropdownStyles(false)}
               />
             </span>
           </span>

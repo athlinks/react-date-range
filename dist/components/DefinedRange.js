@@ -20,6 +20,12 @@ var _styles = require('../styles');
 
 var _styles2 = _interopRequireDefault(_styles);
 
+var _check = require('react-icons/lib/md/check');
+
+var _check2 = _interopRequireDefault(_check);
+
+var _reactDeviceDetect = require('react-device-detect');
+
 var _defaultRanges = require('../defaultRanges');
 
 var _DayCell = require('./DayCell');
@@ -86,8 +92,7 @@ var DefinedRanges = function (_Component) {
           ranges = _props2.ranges,
           rangeColors = _props2.rangeColors,
           className = _props2.className,
-          athlinksCustom = _props2.athlinksCustom,
-          isMobile = _props2.isMobile;
+          athlinksCustom = _props2.athlinksCustom;
 
       return _react2.default.createElement(
         'div',
@@ -163,7 +168,7 @@ var DefinedRanges = function (_Component) {
                       return onPreviewChange && onPreviewChange(sectionRange.range(_this2.props));
                     },
                     onMouseOver: function onMouseOver() {
-                      if (isMobile) {
+                      if (_reactDeviceDetect.isIOS) {
                         _this2.handleRangeChange(sectionRange.range(_this2.props));
                       } else {
                         onPreviewChange && onPreviewChange(sectionRange.range(_this2.props));
@@ -175,7 +180,27 @@ var DefinedRanges = function (_Component) {
                   _react2.default.createElement(
                     'span',
                     { tabIndex: -1, className: _styles2.default.staticRangeLabel },
-                    sectionRange.label
+                    sectionRange.label,
+                    _react2.default.createElement(
+                      'div',
+                      {
+                        style: {
+                          float: 'right',
+                          border: '1px solid',
+                          borderRadius: 10,
+                          display: selectedRange ? 'block' : 'none',
+                          height: 20,
+                          width: 20
+                        } },
+                      _react2.default.createElement(_check2.default, {
+                        style: {
+                          height: 20,
+                          width: 20,
+                          paddingBottom: 2,
+                          paddingRight: 2
+                        }
+                      })
+                    )
                   )
                 );
               })

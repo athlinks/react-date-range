@@ -74,29 +74,12 @@ var DayCell = function (_Component) {
     };
     _this.getClassNames = _this.getClassNames.bind(_this);
     _this.handleMouseEvent = _this.handleMouseEvent.bind(_this);
-    _this.handleKeyEvent = _this.handleKeyEvent.bind(_this);
     _this.renderSelectionPlaceholders = _this.renderSelectionPlaceholders.bind(_this);
     _this.renderPreviewPlaceholder = _this.renderPreviewPlaceholder.bind(_this);
     return _this;
   }
 
   _createClass(DayCell, [{
-    key: 'handleKeyEvent',
-    value: function handleKeyEvent(event) {
-      var day = this.props.day;
-      // Will remove this for now
-      // switch (event.keyCode) {
-      //   case 13: //space
-      //   case 32: //enter
-      //     if (event.type === 'keydown') {
-      //       this.props.onMouseDown(day);
-      //     } else {
-      //       this.props.onMouseUp(day);
-      //     }
-      //     break;
-      // }
-    }
-  }, {
     key: 'handleMouseEvent',
     value: function handleMouseEvent(event) {
       var _props = this.props,
@@ -228,7 +211,7 @@ var DayCell = function (_Component) {
         return _react2.default.createElement('span', {
           key: i,
           className: (0, _classnames5.default)((_classnames3 = {}, _defineProperty(_classnames3, styles.startEdge, range.isStartEdge), _defineProperty(_classnames3, styles.endEdge, range.isEndEdge), _defineProperty(_classnames3, styles.inRange, range.isInRange), _classnames3)),
-          style: { color: range.color || _this2.props.color }
+          style: { color: range.color || _this2.props.color, margin: -2 }
         });
       });
     }
@@ -248,8 +231,6 @@ var DayCell = function (_Component) {
           onMouseUp: this.handleMouseEvent,
           onBlur: this.handleMouseEvent,
           onPauseCapture: this.handleMouseEvent,
-          onKeyDown: this.handleKeyEvent,
-          onKeyUp: this.handleKeyEvent,
           className: this.getClassNames(styles)
         }, this.props.disabled || this.props.isPassive ? { tabIndex: -1 } : {}, {
           style: { color: this.props.color } }),

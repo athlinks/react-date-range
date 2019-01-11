@@ -323,44 +323,46 @@ var Calendar = function (_PureComponent) {
         return { value: val - i, label: val - i };
       });
       var styles = this.styles;
-      var dropdownStyles = {
-        control: function control(provided) {
-          return _extends({}, provided, {
-            border: 'none',
-            boxShadow: 'none'
-          });
-        },
-        indicatorSeparator: function indicatorSeparator(provided) {
-          return _extends({}, provided, {
-            backgroundColor: 'rgb(255,255,255)'
-          });
-        },
-        valueContainer: function valueContainer(provided) {
-          return _extends({}, provided, {
-            justifyContent: 'flex-end'
-          });
-        },
-        singleValue: function singleValue(provided) {
-          return _extends({}, provided, {
-            paddingRight: 15,
-            color: '#4a4a4a'
-          });
-        },
-        menu: function menu(provided) {
-          return _extends({}, provided, {
-            zIndex: 100
-          });
-        },
-        menuList: function menuList(provided) {
-          return _extends({}, provided, {
-            zIndex: 100
-          });
-        },
-        option: function option(provided) {
-          return _extends({}, provided, {
-            color: '#4a4a4a'
-          });
-        }
+      var dropdownStyles = function dropdownStyles(isMonth) {
+        return {
+          control: function control(provided) {
+            return _extends({}, provided, {
+              border: 'none',
+              boxShadow: 'none'
+            });
+          },
+          indicatorSeparator: function indicatorSeparator(provided) {
+            return _extends({}, provided, {
+              backgroundColor: 'rgb(255,255,255)'
+            });
+          },
+          valueContainer: function valueContainer(provided) {
+            return _extends({}, provided, {
+              justifyContent: 'flex-end'
+            });
+          },
+          singleValue: function singleValue(provided) {
+            return _extends({}, provided, {
+              paddingRight: isMonth ? 25 : 10,
+              color: '#4a4a4a'
+            });
+          },
+          menu: function menu(provided) {
+            return _extends({}, provided, {
+              zIndex: 100
+            });
+          },
+          menuList: function menuList(provided) {
+            return _extends({}, provided, {
+              zIndex: 100
+            });
+          },
+          option: function option(provided) {
+            return _extends({}, provided, {
+              color: '#4a4a4a'
+            });
+          }
+        };
       };
 
       return _react2.default.createElement(
@@ -394,7 +396,7 @@ var Calendar = function (_PureComponent) {
                 return changeShownDate(e.value, 'setMonth');
               },
               options: monthOptions,
-              styles: dropdownStyles
+              styles: dropdownStyles(true)
             })
           ),
           _react2.default.createElement(
@@ -410,7 +412,7 @@ var Calendar = function (_PureComponent) {
                 return changeShownDate(e.value, 'setYear');
               },
               options: yearOptions,
-              styles: dropdownStyles
+              styles: dropdownStyles(false)
             })
           )
         ) : _react2.default.createElement(

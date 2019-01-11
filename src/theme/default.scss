@@ -181,7 +181,7 @@
 }
 
 .rdrDay:not(.rdrDayPassive){
-  .rdrInRange, .rdrStartEdge, .rdrEndEdge, .rdrSelected{
+  .rdrStartEdge, .rdrEndEdge, .rdrSelected{
       & ~ .rdrDayNumber{
         span{
           color: rgba(255, 255, 255, 0.85);
@@ -189,6 +189,17 @@
       }
   }
 }
+
+.rdrDay:not(.rdrDayPassive){
+  .rdrInRange{
+      & ~ .rdrDayNumber{
+        span{
+          color: '#4a4a4a';
+        }
+      }
+  }
+}
+
 
 .rdrSelected, .rdrInRange, .rdrStartEdge, .rdrEndEdge{
   background: currentColor;
@@ -204,36 +215,40 @@
   right: 2px;
 }
 
-.rdrInRange{}
+.rdrInRange{
+  background: rgba(22, 169, 225, 0.1);
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
 
 .rdrStartEdge{
-  border-top-left-radius: 1.042em;
-  border-bottom-left-radius: 1.042em;
+  border-top-left-radius: 1.5em;
+  border-bottom-left-radius: 1.5em;
   left: 2px;
 }
 
 .rdrEndEdge{
-  border-top-right-radius: 1.042em;
-  border-bottom-right-radius: 1.042em;
+  border-top-right-radius: 1.5em;
+  border-bottom-right-radius: 1.5em;
   right: 2px;
 }
 
 .rdrSelected{
-  border-radius: 1.042em;
+  border-radius: 1.5em;
 }
 
 .rdrDayStartOfMonth, .rdrDayStartOfWeek{
   .rdrInRange, .rdrEndEdge{
-    border-top-left-radius: 1.042em;
-    border-bottom-left-radius: 1.042em;
+    border-top-left-radius: 1.5em;
+    border-bottom-left-radius: 1.5em;
     left: 2px;
   }
 }
 
 .rdrDayEndOfMonth, .rdrDayEndOfWeek{
   .rdrInRange,  .rdrStartEdge{
-    border-top-right-radius: 1.042em;
-    border-bottom-right-radius: 1.042em;
+    border-top-right-radius: 1.5em;
+    border-bottom-right-radius: 1.5em;
     right: 2px;
   }
 }
@@ -258,7 +273,6 @@
 
 
 .rdrDayStartPreview, .rdrDayInPreview, .rdrDayEndPreview{
-  background: rgba(255, 255, 255, 0.09);
   position: absolute;
   top: 3px;
   left: 0px;
