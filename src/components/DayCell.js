@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {isIOS} from 'react-device-detect';
+import { isIOS } from 'react-device-detect';
 import { startOfDay, format, isSameDay, isAfter, isBefore, endOfDay } from 'date-fns';
 
 class DayCell extends Component {
@@ -15,27 +15,12 @@ class DayCell extends Component {
     };
     this.getClassNames = this.getClassNames.bind(this);
     this.handleMouseEvent = this.handleMouseEvent.bind(this);
-    this.handleKeyEvent = this.handleKeyEvent.bind(this);
     this.renderSelectionPlaceholders = this.renderSelectionPlaceholders.bind(this);
     this.renderPreviewPlaceholder = this.renderPreviewPlaceholder.bind(this);
   }
 
-  handleKeyEvent(event) {
-    const { day } = this.props;
-    // Will remove this for now
-    // switch (event.keyCode) {
-    //   case 13: //space
-    //   case 32: //enter
-    //     if (event.type === 'keydown') {
-    //       this.props.onMouseDown(day);
-    //     } else {
-    //       this.props.onMouseUp(day);
-    //     }
-    //     break;
-    // }
-  }
   handleMouseEvent(event) {
-    const { day, disabled, onPreviewChange} = this.props;
+    const { day, disabled, onPreviewChange } = this.props;
     const stateChanges = {};
     if (disabled) {
       onPreviewChange();
@@ -181,8 +166,6 @@ class DayCell extends Component {
         onMouseUp={this.handleMouseEvent}
         onBlur={this.handleMouseEvent}
         onPauseCapture={this.handleMouseEvent}
-        onKeyDown={this.handleKeyEvent}
-        onKeyUp={this.handleKeyEvent}
         className={this.getClassNames(styles)}
         {...(this.props.disabled || this.props.isPassive ? { tabIndex: -1 } : {})}
         style={{ color: this.props.color }}>
