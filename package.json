@@ -36,6 +36,7 @@
     "classnames": "^2.2.1",
     "date-fns": "2.0.0-alpha.7",
     "prop-types": "^15.5.10",
+    "react-device-detect": "^1.6.1",
     "react-list": "^0.8.8",
     "react-select": "^2.1.2"
   },
