@@ -197,8 +197,13 @@ class Calendar extends PureComponent {
         ...provided,
         zIndex: 100,
       }),
-      option: provided => ({
+      option: (provided, state) => ({
         ...provided,
+        backgroundColor: state.isSelected
+          ? '#16A9E1'
+          : state.isFocused
+          ? '#16A9E11A'
+          : 'transparent',
         color: '#4a4a4a',
       }),
     });
