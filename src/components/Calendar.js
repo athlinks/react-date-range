@@ -204,7 +204,7 @@ class Calendar extends PureComponent {
           : state.isFocused
           ? '#16A9E11A'
           : 'transparent',
-        color: '#4a4a4a',
+        color: state.isSelected ? '#FFFFFF' : '#4a4a4a',
       }),
     });
 
