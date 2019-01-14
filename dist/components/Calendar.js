@@ -360,7 +360,7 @@ var Calendar = function (_PureComponent) {
           option: function option(provided, state) {
             return _extends({}, provided, {
               backgroundColor: state.isSelected ? '#16A9E1' : state.isFocused ? '#16A9E11A' : 'transparent',
-              color: '#4a4a4a'
+              color: state.isSelected ? '#FFFFFF' : '#4a4a4a'
             });
           }
         };

@@ -153,8 +153,8 @@
 }
 
 .rdrWeekDay {
-  -ms-flex-preferred-size: calc(100% / 7);
-      flex-basis: calc(100% / 7);
+  -ms-flex-preferred-size: calc(calc(100% / 7) - .3px);
+      flex-basis: calc(calc(100% / 7) - .3px);
   -webkit-box-sizing: inherit;
           box-sizing: inherit;
   text-align: center;
@@ -186,7 +186,7 @@
 .rdrDay {
   -webkit-box-sizing: inherit;
           box-sizing: inherit;
-  width: calc(100% / 7);
+  width: calc(calc(100% / 7) - .3px);
   position: relative;
   font: inherit;
   cursor: pointer;
