@@ -1,6 +1,6 @@
 .rdrDay {
   box-sizing: inherit;
-  width: calc(100% / 7);
+  width: calc(calc(100% / 7) - .3px);
   position: relative;
   font: inherit;
   cursor: pointer;

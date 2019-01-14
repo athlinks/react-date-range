@@ -108,7 +108,7 @@
 }
 
 .rdrWeekDay {
-  flex-basis: calc(100% / 7);
+  flex-basis: calc(calc(100% / 7) - .3px);
   box-sizing: inherit;
   text-align: center;
 }
