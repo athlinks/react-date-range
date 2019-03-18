@@ -114,6 +114,7 @@ class Calendar extends PureComponent {
   }
   componentDidMount() {
     if (this.props.scroll.enabled) {
+      console.log(this.state.focusedDate, 'USAO U USLOV');
       // prevent react-list's initial render focus problem
       setTimeout(() => this.focusToDate(this.state.focusedDate), 1);
     }
