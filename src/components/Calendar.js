@@ -133,9 +133,9 @@ class Calendar extends PureComponent {
     if (JSON.stringify(this.props.scroll) !== JSON.stringify(nextProps.scroll)) {
       this.setState({ scrollArea: this.calcScrollArea(nextProps) });
     }
-    if (nextProps[targetProp] !== this.props[targetProp]) {
+    // if (nextProps[targetProp] !== this.props[targetProp]) {
       this.updateShownDate(nextProps);
-    }
+    // }
   }
   changeShownDate(value, mode = 'set') {
     console.log('USAO U changeShownDate')

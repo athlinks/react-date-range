@@ -255,9 +255,9 @@ var Calendar = function (_PureComponent) {
       if (JSON.stringify(this.props.scroll) !== JSON.stringify(nextProps.scroll)) {
         this.setState({ scrollArea: this.calcScrollArea(nextProps) });
       }
-      if (nextProps[targetProp] !== this.props[targetProp]) {
-        this.updateShownDate(nextProps);
-      }
+      // if (nextProps[targetProp] !== this.props[targetProp]) {
+      this.updateShownDate(nextProps);
+      // }
     }
   }, {
     key: 'changeShownDate',
