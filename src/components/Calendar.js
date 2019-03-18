@@ -90,6 +90,7 @@ class Calendar extends PureComponent {
     this.setState({ focusedDate: date });
   }
   updateShownDate(props = this.props) {
+    console.log('USAO U updateShownDate')
     const newProps = props.scroll.enabled
       ? {
           ...props,
@@ -116,6 +117,7 @@ class Calendar extends PureComponent {
       // prevent react-list's initial render focus problem
       setTimeout(() => this.focusToDate(this.state.focusedDate), 1);
     }
+    console.log(this.state.focusedDate, 'Ovo je vrednost na renderu');
   }
   componentWillReceiveProps(nextProps) {
     const propMapper = {
@@ -134,6 +136,7 @@ class Calendar extends PureComponent {
     }
   }
   changeShownDate(value, mode = 'set') {
+    console.log('USAO U changeShownDate')
     const { focusedDate } = this.state;
     const { onShownDateChange, minDate, maxDate } = this.props;
     const modeMapper = {

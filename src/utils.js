@@ -11,6 +11,7 @@ import {
 export function calcFocusDate(currentFocusedDate, props) {
   const { shownDate, date, months, ranges, focusedRange, displayMode } = props;
   // find primary date according the props
+  console.log('A OVDE STA JE');
   let targetInterval;
   if (displayMode === 'dateRange') {
     const range = ranges[focusedRange[0]] || {};
@@ -27,7 +28,8 @@ export function calcFocusDate(currentFocusedDate, props) {
   targetInterval.start = startOfMonth(targetInterval.start || new Date());
   targetInterval.end = endOfMonth(targetInterval.end || targetInterval.start);
   const targetDate = targetInterval.start || targetInterval.end || shownDate || new Date();
-
+  // console.log(targetInterval, '1');
+  // console.log(currentFocusedDate, '2');
   // initial focus
   if (!currentFocusedDate) return shownDate || targetDate;
 
@@ -37,10 +39,15 @@ export function calcFocusDate(currentFocusedDate, props) {
     start: startOfMonth(currentFocusedDate),
     end: endOfMonth(addMonths(currentFocusedDate, months - 1)),
   };
+
+  // console.log(currentFocusInterval, 'CURENT');
+  // console.log(targetInterval, 'TARGET');
+
   if (areIntervalsOverlapping(targetInterval, currentFocusInterval)) {
     // don't change focused if new selection in view area
     return currentFocusedDate;
   }
+  console.log(targetDate, 'ovo vraca');
   return targetDate;
 }
 
