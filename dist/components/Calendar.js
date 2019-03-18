@@ -205,6 +205,7 @@ var Calendar = function (_PureComponent) {
     value: function updateShownDate() {
       var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props;
 
+      console.log('USAO U updateShownDate');
       var newProps = props.scroll.enabled ? _extends({}, props, {
         months: this.list.getVisibleRange().length
       }) : props;
@@ -231,11 +232,13 @@ var Calendar = function (_PureComponent) {
       var _this2 = this;
 
       if (this.props.scroll.enabled) {
+        console.log(this.state.focusedDate, 'USAO U USLOV');
         // prevent react-list's initial render focus problem
         setTimeout(function () {
           return _this2.focusToDate(_this2.state.focusedDate);
         }, 1);
       }
+      console.log(this.state.focusedDate, 'Ovo je vrednost na renderu');
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -259,6 +262,8 @@ var Calendar = function (_PureComponent) {
     key: 'changeShownDate',
     value: function changeShownDate(value) {
       var mode = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'set';
+
+      console.log('USAO U changeShownDate');
       var focusedDate = this.state.focusedDate;
       var _props = this.props,
           onShownDateChange = _props.onShownDateChange,
