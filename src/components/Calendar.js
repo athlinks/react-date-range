@@ -79,6 +79,7 @@ class Calendar extends PureComponent {
     };
   }
   focusToDate(date, props = this.props, preventUnnecessary = true) {
+    console.log('USAO U focusToDate', date);
     if (!props.scroll.enabled) {
       this.setState({ focusedDate: date });
       return;
@@ -90,7 +91,7 @@ class Calendar extends PureComponent {
     this.setState({ focusedDate: date });
   }
   updateShownDate(props = this.props) {
-    console.log('USAO U updateShownDate')
+    console.log('USAO U updateShownDate');
     const newProps = props.scroll.enabled
       ? {
           ...props,

@@ -47,7 +47,7 @@ function calcFocusDate(currentFocusedDate, props) {
       displayMode = props.displayMode;
   // find primary date according the props
 
-  console.log('A OVDE STA JE');
+  console.log(props, 'OVO JE PROPS');
   var targetInterval = void 0;
   if (displayMode === 'dateRange') {
     var range = ranges[focusedRange[0]] || {};
@@ -76,8 +76,8 @@ function calcFocusDate(currentFocusedDate, props) {
     end: (0, _endOfMonth2.default)((0, _addMonths2.default)(currentFocusedDate, months - 1))
   };
 
-  // console.log(currentFocusInterval, 'CURENT');
-  // console.log(targetInterval, 'TARGET');
+  console.log(currentFocusInterval, 'CURENT');
+  console.log(targetInterval, 'TARGET');
 
   if ((0, _areIntervalsOverlapping2.default)(targetInterval, currentFocusInterval)) {
     // don't change focused if new selection in view area

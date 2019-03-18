@@ -190,6 +190,7 @@ var Calendar = function (_PureComponent) {
       var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.props;
       var preventUnnecessary = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
+      console.log('USAO U focusToDate', date);
       if (!props.scroll.enabled) {
         this.setState({ focusedDate: date });
         return;
